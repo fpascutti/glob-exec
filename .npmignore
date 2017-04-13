@@ -1,0 +1,11 @@
+/.vscode/
+/node_modules/
+/spec/
+/spec.out/
+/src/
+/test/
+/test.out/
+/.gitignore
+/.npmignore
+/tsconfig.json
+/tslint.json

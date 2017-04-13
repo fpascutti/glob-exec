@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "sourceMap": true,
+    "newLine": "LF",
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es5",
+      "scripthost"
+    ]
+  }
+}

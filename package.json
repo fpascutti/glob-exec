@@ -1,0 +1,36 @@
+{
+  "name": "glob-cli",
+  "version": "0.0.1",
+  "description": "Command-line interface to glob",
+  "homepage": "https://github.com/fpascutti/glob-cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fpascutti/glob-cli.git"
+  },
+  "private": true,
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.40",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "tslint": "^5.0.0",
+    "tslint-eslint-rules": "^4.0.0",
+    "typescript": "^2.2.1"
+  },
+  "scripts": {
+    "lib:build": "tsc --project ./src/tsconfig.json --outDir ./lib --rootDir ./src",
+    "lib:lint": "tslint --project ./src/tsconfig.json --config ./tslint.json --format verbose",
+    "spec:build": "tsc --project ./spec/tsconfig.json --outDir ./spec.out --rootDir ./spec",
+    "spec:lint": "tslint --project ./spec/tsconfig.json --config ./tslint.json --format verbose",
+    "test:build": "tsc --project ./test/tsconfig.json --outDir ./test.out --rootDir .",
+    "test:lint": "tslint --project ./test/tsconfig.json --config ./tslint.json --format verbose",
+    "build": "npm run-script lib:build && npm run-script spec:build && npm run-script test:build",
+    "lint": "npm run-script lib:lint && npm run-script spec:lint && npm run-script test:lint",
+    "prepublish": "npm run-script build && npm run-script lint && npm test && npm run-script spec",
+    "test": "mocha --check-leaks --no-exit ./test.out/test/**/*.test.js",
+    "spec": "mocha --check-leaks --no-exit ./spec.out/**/*.spec.js"
+  },
+  "dependencies": {}
+}
