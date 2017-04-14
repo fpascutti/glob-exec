@@ -3,8 +3,6 @@
 /spec/
 /spec.out/
 /src/
-/test/
-/test.out/
 /.gitignore
 /.npmignore
 /tsconfig.json

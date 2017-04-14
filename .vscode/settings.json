@@ -12,7 +12,6 @@
     "lib/": true,
     "node_modules/": true,
     "spec.out/": true,
-    "test.out/": true,
     ".gitignore": true,
     ".npmignore": true
   },

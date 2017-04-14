@@ -7,23 +7,6 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "test",
-      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-      "cwd": "${workspaceRoot}",
-      "args": [
-        "--no-timeouts",
-        "--colors",
-        "--check-leaks",
-        "--no-exit",
-        "${workspaceRoot}/test.out/test/**/*.test.js"
-      ],
-      "outFiles": [
-        "${workspaceRoot}/test.out/**/*.js"
-      ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "spec",
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "cwd": "${workspaceRoot}",

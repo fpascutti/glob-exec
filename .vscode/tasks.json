@@ -23,13 +23,6 @@
       ]
     },
     {
-      "taskName": "test",
-      "isTestCommand": true,
-      "args": [
-        "test"
-      ]
-    },
-    {
       "taskName": "spec",
       "args": [
         "run-script",

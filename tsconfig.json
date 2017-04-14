@@ -12,10 +12,10 @@
     "declaration": true,
     "sourceMap": true,
     "newLine": "LF",
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "lib": [
-      "es5",
+      "es6",
       "scripthost"
     ]
   }
