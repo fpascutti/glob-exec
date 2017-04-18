@@ -18,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/fpascutti/glob-exec/issues"
   },
-  "private": true,
   "bin": "./lib/cli.js",
   "main": "./lib/glob-exec.js",
   "typings": "./lib/glob-exec.d.ts",
