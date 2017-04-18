@@ -33,8 +33,13 @@ function replace(input: string, keys: string[], values: any[]): string {
   });
 }
 
+const globals: [string[], any[]] = [
+  ["Buffer", "__dirname", "__filename", "clearImmediate", "clearInterval", "clearTimeout", "console", "exports", "global", "module", "process", "require", "setImmediate", "setInterval", "setTimeout"],
+  [Buffer, __dirname, __filename, clearImmediate, clearInterval, clearTimeout, console, exports, global, module, process, require, setImmediate, setInterval, setTimeout]
+];
+
 export default function(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
   return globy(pattern, opts).then((files: string[]): string => {
-    return replace(cmd, ["files"], [files]);
+    return replace(cmd, globals[0].concat(["files"]), globals[1].concat([files]));
   });
 }
