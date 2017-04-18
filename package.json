@@ -3,14 +3,29 @@
   "version": "0.0.1",
   "description": "Execute processes using output from glob.",
   "homepage": "https://github.com/fpascutti/glob-exec",
+  "license": "BSL-1.0",
+  "contributors": [
+    {
+      "name": "Franck Pascutti",
+      "email": "gatorette@free.fr",
+      "url": "https://github.com/fpascutti"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/fpascutti/glob-exec.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fpascutti/glob-exec/issues"
   },
   "private": true,
   "bin": "./lib/cli.js",
   "main": "./lib/glob-exec.js",
   "typings": "./lib/glob-exec.d.ts",
+  "dependencies": {
+    "glob": "^7.1.1",
+    "subarg": "^1.0.0"
+  },
   "devDependencies": {
     "@types/chai": "^3.4.35",
     "@types/chai-as-promised": "0.0.30",
@@ -34,9 +49,5 @@
     "lint": "npm run-script lib:lint && npm run-script spec:lint",
     "prepublish": "npm run-script build && npm run-script lint && npm run-script spec",
     "spec": "mocha --check-leaks --no-exit ./spec.out/**/*.spec.js"
-  },
-  "dependencies": {
-    "glob": "^7.1.1",
-    "subarg": "^1.0.0"
   }
 }
