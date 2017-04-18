@@ -34,8 +34,10 @@ function replace(input: string, keys: string[], values: any[]): string {
 }
 
 const globals: [string[], any[]] = [
-  ["Buffer", "__dirname", "__filename", "clearImmediate", "clearInterval", "clearTimeout", "console", "exports", "global", "module", "process", "require", "setImmediate", "setInterval", "setTimeout"],
-  [Buffer, __dirname, __filename, clearImmediate, clearInterval, clearTimeout, console, exports, global, module, process, require, setImmediate, setInterval, setTimeout]
+  ["Buffer", "__dirname", "__filename", "clearImmediate", "clearInterval", "clearTimeout",
+    "console", "exports", "global", "module", "process", "require", "setImmediate", "setInterval", "setTimeout"],
+  [Buffer, __dirname, __filename, clearImmediate, clearInterval, clearTimeout,
+    console, exports, global, module, process, require, setImmediate, setInterval, setTimeout],
 ];
 
 export default function(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
