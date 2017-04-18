@@ -9,8 +9,8 @@
   },
   "private": true,
   "bin": "./lib/cli.js",
-  "main": "./lib/globy.js",
-  "typings": "./lib/globy.d.ts",
+  "main": "./lib/glob-exec.js",
+  "typings": "./lib/glob-exec.d.ts",
   "devDependencies": {
     "@types/chai": "^3.4.35",
     "@types/chai-as-promised": "0.0.30",

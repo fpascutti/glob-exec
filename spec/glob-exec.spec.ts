@@ -6,9 +6,9 @@ import "mocha";
 import * as fs from "mz/fs";
 import * as path from "path";
 
-import globy from "..";
+import impl from "..";
 
-describe("globy", (): void => {
+describe("impl", (): void => {
 
   interface IDirectory {
     readonly name: string;
@@ -72,7 +72,7 @@ describe("globy", (): void => {
   });
 
   it("should return the correct command", (): PromiseLike<void> => {
-    return chai.expect(globy("./spec.out/data/**/*.ts", "found {{files.length}} files: {{files.sort().join('^')}}!"))
+    return chai.expect(impl("./spec.out/data/**/*.ts", "found {{files.length}} files: {{files.sort().join('^')}}!"))
       .to.eventually.be.equal(
       "found 4 files: " +
       "./spec.out/data/index.spec.ts^" +
@@ -83,7 +83,7 @@ describe("globy", (): void => {
   });
 
   it("should be OK when an empty set is obtained", (): PromiseLike<void> => {
-    return chai.expect(globy("./unknown/**/*", "Empty? {{files.length === 0}}"))
+    return chai.expect(impl("./unknown/**/*", "Empty? {{files.length === 0}}"))
       .to.eventually.be.equal("Empty? true");
   });
 
