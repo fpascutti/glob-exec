@@ -8,6 +8,7 @@
     "url": "https://github.com/fpascutti/glob-cli.git"
   },
   "private": true,
+  "bin": "./lib/cli.ts",
   "main": "./lib/globy.js",
   "typings": "./lib/globy.d.ts",
   "devDependencies": {
@@ -35,6 +36,7 @@
     "spec": "mocha --check-leaks --no-exit ./spec.out/**/*.spec.js"
   },
   "dependencies": {
-    "glob": "^7.1.1"
+    "glob": "^7.1.1",
+        "subarg": "^1.0.0"
   }
 }
