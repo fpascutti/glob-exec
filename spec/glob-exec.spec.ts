@@ -6,9 +6,9 @@ import "mocha";
 import * as fs from "mz/fs";
 import * as path from "path";
 
-import impl from "..";
+import { all } from "..";
 
-describe("impl", (): void => {
+describe("glob-exec", (): void => {
 
   interface IDirectory {
     readonly name: string;
@@ -71,20 +71,24 @@ describe("impl", (): void => {
     return destroyDirectoryHierarchy(root, hierarchy);
   });
 
-  it("should return the correct command", (): PromiseLike<void> => {
-    return chai.expect(impl("./spec.out/data/**/*.ts", "found {{files.length}} files: {{files.sort().join('^')}}!"))
-      .to.eventually.be.equal(
-      "found 4 files: " +
-      "./spec.out/data/index.spec.ts^" +
-      "./spec.out/data/index.ts^" +
-      "./spec.out/data/subdir/index.spec.ts^" +
-      "./spec.out/data/subdir/index.ts!",
-    );
-  });
+  describe("all", (): void => {
 
-  it("should be OK when an empty set is obtained", (): PromiseLike<void> => {
-    return chai.expect(impl("./unknown/**/*", "Empty? {{files.length === 0}}"))
-      .to.eventually.be.equal("Empty? true");
+    it("should return the correct command", (): PromiseLike<void> => {
+      return chai.expect(all("./spec.out/data/**/*.ts", "found {{files.length}} files: {{files.sort().join('^')}}!"))
+        .to.eventually.be.equal(
+        "found 4 files: " +
+        "./spec.out/data/index.spec.ts^" +
+        "./spec.out/data/index.ts^" +
+        "./spec.out/data/subdir/index.spec.ts^" +
+        "./spec.out/data/subdir/index.ts!",
+      );
+    });
+
+    it("should be OK when an empty set is obtained", (): PromiseLike<void> => {
+      return chai.expect(all("./unknown/**/*", "Empty? {{files.length === 0}}"))
+        .to.eventually.be.equal("Empty? true");
+    });
+
   });
 
 });

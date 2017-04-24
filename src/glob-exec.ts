@@ -40,7 +40,7 @@ const globals: [string[], any[]] = [
     console, exports, global, module, process, require, setImmediate, setInterval, setTimeout],
 ];
 
-export default function(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
+export function all(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
   return globy(pattern, opts).then((files: string[]): string => {
     return replace(cmd, globals[0].concat(["files"]), globals[1].concat([files]));
   });
