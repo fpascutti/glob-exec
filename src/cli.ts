@@ -52,7 +52,7 @@ function main(argv: any): PromiseLike<void | void[]> {
 // tslint:disable-next-line:no-var-requires
 const subarg: any = require("subarg"); // no type definition for `subarg` yet
 const argv: any = subarg(process.argv.slice(2), {
-  boolean: ["foreach", "parallel"]
+  boolean: ["foreach", "parallel"],
 });
 main(argv).then(undefined, (reason: any): void => {
   throw reason;
