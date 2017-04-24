@@ -6,7 +6,7 @@ import "mocha";
 import * as fs from "mz/fs";
 import * as path from "path";
 
-import { all } from "..";
+import { all, foreach } from "..";
 
 describe("glob-exec", (): void => {
 
@@ -91,4 +91,29 @@ describe("glob-exec", (): void => {
 
   });
 
+  describe("foreach", (): void => {
+
+    it("should return the correct command", (): PromiseLike<void> => {
+      return chai.expect(foreach("./spec.out/data/**/*.ts", "{{file}}: path: {{file.path}} | root: {{file.root}} " +
+        "| dir: {{file.dir}} | base: {{file.base}} | ext: {{file.ext}} | name: {{file.name}} " +
+        "| relative: {{file.relative('./spec.out/data').split('\\\\').join('/')}}"))
+        .to.eventually.have.lengthOf(4)
+        .and.include("./spec.out/data/index.spec.ts: path: ./spec.out/data/index.spec.ts " +
+        "| root:  | dir: ./spec.out/data | base: index.spec.ts | ext: .ts | name: index.spec | relative: index.spec.ts")
+        .and.include("./spec.out/data/index.ts: path: ./spec.out/data/index.ts " +
+        "| root:  | dir: ./spec.out/data | base: index.ts | ext: .ts | name: index | relative: index.ts")
+        .and.include("./spec.out/data/subdir/index.spec.ts: path: ./spec.out/data/subdir/index.spec.ts " +
+        "| root:  | dir: ./spec.out/data/subdir | base: index.spec.ts " +
+        "| ext: .ts | name: index.spec | relative: subdir/index.spec.ts")
+        .and.include("./spec.out/data/subdir/index.ts: path: ./spec.out/data/subdir/index.ts " +
+        "| root:  | dir: ./spec.out/data/subdir | base: index.ts | ext: .ts | name: index | relative: subdir/index.ts")
+        ;
+    });
+
+    it("should be OK when an empty set is obtained", (): PromiseLike<void> => {
+      return chai.expect(foreach("./unknown/**/*", "{{file}}"))
+        .to.eventually.be.empty;
+    });
+
+  });
 });
