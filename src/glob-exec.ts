@@ -1,4 +1,5 @@
 import * as glob from "glob";
+import * as path from "path";
 
 function globy(pattern: string, opts?: glob.IOptions): PromiseLike<string[]> {
   return new Promise<string[]>((resolve: (val: string[]) => void, reject: (reason: any) => void): void => {
@@ -40,8 +41,41 @@ const globals: [string[], any[]] = [
     console, exports, global, module, process, require, setImmediate, setInterval, setTimeout],
 ];
 
-export default function(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
+export function all(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
   return globy(pattern, opts).then((files: string[]): string => {
     return replace(cmd, globals[0].concat(["files"]), globals[1].concat([files]));
+  });
+}
+
+class ParsedPath {
+  public readonly path: string;
+
+  public readonly root: string;
+  public readonly dir: string;
+  public readonly base: string;
+  public readonly ext: string;
+  public readonly name: string;
+
+  constructor(p: string) {
+    this.path = p;
+    ({ root: this.root, dir: this.dir, base: this.base, ext: this.ext, name: this.name } = path.parse(p));
+  }
+
+  public toString() {
+    return this.path;
+  }
+
+  public relative(from: string): string {
+    return path.relative(from, this.path);
+  }
+
+}
+
+export function foreach(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string[]> {
+  return globy(pattern, opts).then((files: string[]): string[] => {
+    return files.map((file: string): string => {
+      const parsed: ParsedPath = new ParsedPath(file);
+      return replace(cmd, globals[0].concat(["file"]), globals[1].concat([parsed]));
+    });
   });
 }
