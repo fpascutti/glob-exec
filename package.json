@@ -2,6 +2,16 @@
   "name": "glob-exec",
   "version": "0.0.1",
   "description": "Execute processes using output from glob.",
+  "keywords": [
+    "cli",
+    "command",
+    "command-line",
+    "script",
+    "scripts",
+    "glob",
+    "foreach",
+    "each"
+  ],
   "homepage": "https://github.com/fpascutti/glob-exec",
   "license": "BSL-1.0",
   "contributors": [
