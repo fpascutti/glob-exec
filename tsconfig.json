@@ -11,12 +11,12 @@
     "strictNullChecks": true,
     "declaration": true,
     "sourceMap": true,
-    "newLine": "LF",
+    "newLine": "lf",
     "target": "es6",
     "module": "commonjs",
     "lib": [
-      "es6",
-      "scripthost"
-    ]
+      "es6"
+    ],
+    "types": []
   }
 }

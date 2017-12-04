@@ -1,7 +1,7 @@
 import * as glob from "glob";
 import * as path from "path";
 
-function globy(pattern: string, opts?: glob.IOptions): PromiseLike<string[]> {
+function globy(pattern: string, opts?: glob.IOptions): Promise<string[]> {
   return new Promise<string[]>((resolve: (val: string[]) => void, reject: (reason: any) => void): void => {
 
     function cb(err: Error, matches: string[]) {
@@ -41,7 +41,7 @@ const globals: [string[], any[]] = [
     console, exports, global, module, process, require, setImmediate, setInterval, setTimeout],
 ];
 
-export function all(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string> {
+export function all(pattern: string, cmd: string, opts?: glob.IOptions): Promise<string> {
   return globy(pattern, opts).then((files: string[]): string => {
     return replace(cmd, globals[0].concat(["files"]), globals[1].concat([files]));
   });
@@ -71,7 +71,7 @@ class ParsedPath {
 
 }
 
-export function foreach(pattern: string, cmd: string, opts?: glob.IOptions): PromiseLike<string[]> {
+export function foreach(pattern: string, cmd: string, opts?: glob.IOptions): Promise<string[]> {
   return globy(pattern, opts).then((files: string[]): string[] => {
     return files.map((file: string): string => {
       const parsed: ParsedPath = new ParsedPath(file);

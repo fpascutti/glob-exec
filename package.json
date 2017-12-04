@@ -1,6 +1,6 @@
 {
   "name": "glob-exec",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Execute processes using output from glob.",
   "keywords": [
     "cli",
@@ -32,31 +32,31 @@
   "main": "./lib/glob-exec.js",
   "typings": "./lib/glob-exec.d.ts",
   "dependencies": {
-    "glob": "^7.1.1",
-    "subarg": "^1.0.0"
+    "glob": "7.1.X",
+    "subarg": "1.0.X"
   },
   "devDependencies": {
-    "@types/chai": "^3.4.35",
-    "@types/chai-as-promised": "0.0.30",
-    "@types/glob": "^5.0.30",
-    "@types/mocha": "^2.2.40",
-    "@types/mz": "0.0.31",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "mocha": "^3.2.0",
-    "mz": "^2.6.0",
-    "tslint": "^5.0.0",
-    "tslint-eslint-rules": "^4.0.0",
-    "typescript": "^2.2.1"
+    "@types/chai": "4.0.6",
+    "@types/chai-as-promised": "7.X.X",
+    "@types/glob": "5.X.X",
+    "@types/mocha": "2.X.X",
+    "@types/mz": "0.0.X",
+    "chai": "4.X.X",
+    "chai-as-promised": "7.X.X",
+    "mocha": "4.X.X",
+    "mz": "2.X.X",
+    "tslint": "5.X.X",
+    "tslint-eslint-rules": "4.X.X",
+    "typescript": "2.X.X"
   },
   "scripts": {
     "lib:build": "tsc --project ./src/tsconfig.json --outDir ./lib --rootDir ./src",
-    "lib:lint": "tslint --project ./src/tsconfig.json --config ./tslint.json --format verbose",
+    "lib:lint": "tslint --project ./src/tsconfig.json --config ./src/tslint.json --format verbose",
     "spec:build": "tsc --project ./spec/tsconfig.json --outDir ./spec.out --rootDir ./spec",
-    "spec:lint": "tslint --project ./spec/tsconfig.json --config ./tslint.json --format verbose",
+    "spec:lint": "tslint --project ./spec/tsconfig.json --config ./spec/tslint.json --format verbose",
     "build": "npm run-script lib:build && npm run-script spec:build",
     "lint": "npm run-script lib:lint && npm run-script spec:lint",
-    "prepublish": "npm run-script build && npm run-script lint && npm run-script spec",
-    "spec": "mocha --check-leaks --no-exit ./spec.out/**/*.spec.js"
+    "prepare": "npm run-script build && npm run-script lint && npm run-script spec",
+    "spec": "mocha --check-leaks ./spec.out/**/*.spec.js"
   }
 }

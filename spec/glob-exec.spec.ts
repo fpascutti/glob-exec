@@ -1,13 +1,14 @@
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
-chai.use(chaiAsPromised);
 import "mocha";
 
+// tslint:disable-next-line:no-submodule-imports
 import * as fs from "mz/fs";
 import * as path from "path";
 
 import { all, foreach } from "..";
 
+chai.use(chaiAsPromised);
 describe("glob-exec", (): void => {
 
   interface IDirectory {

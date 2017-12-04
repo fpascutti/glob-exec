@@ -3,7 +3,7 @@
 import { ChildProcess, execSync, spawn } from "child_process";
 import { all, foreach } from "./glob-exec";
 
-function execute(cmd: string): PromiseLike<void> {
+function execute(cmd: string): Promise<void> {
   return new Promise<void>((resolve: () => void, reject: (reason: any) => void): void => {
 
     const proc: ChildProcess = spawn(cmd, [], { stdio: "inherit", shell: true });
@@ -30,22 +30,22 @@ function executeSync(cmd: string): void {
   execSync(cmd, { stdio: "inherit" });
 }
 
-function main(argv: any): PromiseLike<void | void[]> {
-  const pattern: string = argv._.shift();
-  const command: string = argv._.join(" ");
+function main(args: any): Promise<void | void[]> {
+  const pattern: string = args._.shift();
+  const command: string = args._.join(" ");
 
-  if (argv.foreach) {
-    if (argv.parallel) {
-      return foreach(pattern, command, argv.glob).then((cmds: string[]): Promise<void[]> => {
+  if (args.foreach) {
+    if (args.parallel) {
+      return foreach(pattern, command, args.glob).then((cmds: string[]): Promise<void[]> => {
         return Promise.all(cmds.map(execute));
       });
     } else {
-      return foreach(pattern, command, argv.glob).then((cmds: string[]): void => {
+      return foreach(pattern, command, args.glob).then((cmds: string[]): void => {
         cmds.forEach(executeSync);
       });
     }
   } else {
-    return all(pattern, command, argv.glob).then(executeSync);
+    return all(pattern, command, args.glob).then(executeSync);
   }
 }
 
@@ -54,6 +54,7 @@ const subarg: any = require("subarg"); // no type definition for `subarg` yet
 const argv: any = subarg(process.argv.slice(2), {
   boolean: ["foreach", "parallel"],
 });
-main(argv).then(undefined, (reason: any): void => {
-  throw reason;
+main(argv).catch((reason: any): void => {
+  // make the application fail
+  setImmediate((): never => { throw reason; });
 });
